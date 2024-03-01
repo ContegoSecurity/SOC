@@ -107,5 +107,5 @@ fi
 sudo sysmon -i
 
 #configuração sysmon
-sudo wget -O /opt/sysmon/config-custom.xml https://raw.githubusercontent.com/Fabio833/Wazuh-Rules/main/Sysmon%20Linux/config/collect-all.xml
+sudo wget -O /opt/sysmon/config-custom.xml https://raw.githubusercontent.com/ContegoSecurity/SOC/main/sysmon/linux/sysmon-custom.xml
 sudo sysmon -c /opt/sysmon/config-custom.xml
