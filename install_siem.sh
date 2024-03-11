@@ -1,6 +1,11 @@
 #!/bin/bash
 
+# NA LINHA abaixo de #SIEM OS, ADICIONE O GRUPO DO CLIENTE AO LADO DE Linux <WAZUH_AGENT_GROUP='Linux,'> ex: WAZUH_AGENT_GROUP='Linux,tirol' 
+# o nome dos grupos é CASE SENSITIVE, validar nomenclatura dos grupos diretamente na interface web do Wazuh.
 # Detect the OS
+
+#WAZUH_GROUP="Linux, <CLIENTE>"
+
 OS=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
 
 # Ubuntu 20.04 & 22.04
