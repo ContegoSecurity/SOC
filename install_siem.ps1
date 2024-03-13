@@ -1,8 +1,10 @@
 #Install SIEM
-# NA LINHA INVOKE-WEBREQUEST ADICIONE O GRUPO DO CLIENTE AO LADO DE WINDOWS <WAZUH_AGENT_GROUP='Windows'> ex: WAZUH_AGENT_GROUP='Windows, tirol' 
-# o nome dos grupos é CASE SENSITIVE, validar nomenclatura dos grupos diretamente na interface web do Wazuh.
 
-Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.7.0-1.msi -OutFile ${env.tmp}\wazuh-agent; msiexec.exe /i ${env.tmp}\wazuh-agent /q WAZUH_MANAGER='siem.contego.com.br' WAZUH_AGENT_GROUP='Windows' WAZUH_REGISTRATION_SERVER='siem.contego.com.br' 
+$CLIENTE = "LAB-CONTEGO"
+$GROUP = "Windows"
+$GROUPS = "$CLIENTE,$GROUP"
+
+Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.7.0-1.msi -OutFile ${env.tmp}\wazuh-agent; msiexec.exe /i ${env.tmp}\wazuh-agent /q WAZUH_MANAGER='siem.contego.com.br' WAZUH_AGENT_GROUP=${GROUPS} WAZUH_REGISTRATION_SERVER='siem.contego.com.br' 
 #Install Sysmon with xml config
 $sysinternals_repo = 'download.sysinternals.com'
 $sysinternals_downloadlink = 'https://download.sysinternals.com/files/Sysmon.zip'
