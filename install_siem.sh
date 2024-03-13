@@ -5,7 +5,6 @@ CLIENTE='LAB-CONTEGO'
 SIEM_GROUPS="${GROUP},${CLIENTE}"
 SERVER=siem.contego.com.br
 
-echo $SIEM_GROUPS
 
 # Detect the OS
 OS=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
