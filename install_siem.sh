@@ -1,6 +1,11 @@
 #!/bin/bash
 
-#Em WAZUH_AGENT_GROUP='Linux' adicione o nome do cliente conforme nomenclatura. ex:WAZUH_AGENT_GROUP='Linux,CONTEGO' 
+GROUP='Linux'
+CLIENTE='LAB-CONTEGO'
+SIEM_GROUPS="${GROUP},${CLIENTE}"
+SERVER=siem.contego.com.br
+
+echo $SIEM_GROUPS
 
 # Detect the OS
 OS=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
@@ -8,7 +13,7 @@ OS=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
 # Ubuntu 20.04 & 22.04
 if [[ $OS == *"Ubuntu"* ]]; then
     #SIEM Ubuntu
-    wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.7.0-1_amd64.deb && sudo WAZUH_MANAGER='siem.contego.com.br' WAZUH_AGENT_GROUP='Linux' dpkg -i ./wazuh-agent_4.7.0-1_amd64.deb
+    wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.7.0-1_amd64.deb && sudo WAZUH_MANAGER=${SERVER} WAZUH_AGENT_GROUP=${SIEM_GROUPS} dpkg -i ./wazuh-agent_4.7.0-1_amd64.deb
     sudo systemctl daemon-reload
     sudo systemctl enable wazuh-agent
     sudo systemctl start wazuh-agent
@@ -21,7 +26,7 @@ if [[ $OS == *"Ubuntu"* ]]; then
 # Debian 11
 elif [[ $OS == *"Debian"* ]]; then
     #SIEM Ubuntu
-    wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.7.0-1_amd64.deb && sudo WAZUH_MANAGER='siem.contego.com.br' WAZUH_AGENT_GROUP='Linux' dpkg -i ./wazuh-agent_4.7.0-1_amd64.deb
+    wget https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.7.0-1_amd64.deb && sudo WAZUH_MANAGER=${SERVER} WAZUH_AGENT_GROUP='Linux' dpkg -i ./wazuh-agent_4.7.0-1_amd64.deb
     sudo systemctl daemon-reload
     sudo systemctl enable wazuh-agent
     sudo systemctl start wazuh-agent
@@ -40,7 +45,7 @@ elif [[ $OS == *"Debian"* ]]; then
 # Fedora 36
 elif [[ $OS == *"Fedora"* ]]; then
     #SIEM RPM
-    curl -o wazuh-agent-4.7.0-1.x86_64.rpm https://packages.wazuh.com/4.x/yum/wazuh-agent-4.7.0-1.x86_64.rpm && sudo WAZUH_MANAGER='siem.contego.com.br' WAZUH_AGENT_GROUP='Linux' rpm -ihv wazuh-agent-4.7.0-1.x86_64.rpm
+    curl -o wazuh-agent-4.7.0-1.x86_64.rpm https://packages.wazuh.com/4.x/yum/wazuh-agent-4.7.0-1.x86_64.rpm && sudo WAZUH_MANAGER=${SERVER} WAZUH_AGENT_GROUP='Linux' rpm -ihv wazuh-agent-4.7.0-1.x86_64.rpm
     sudo systemctl daemon-reload
     sudo systemctl enable wazuh-agent
     sudo systemctl start wazuh-agent
@@ -52,7 +57,7 @@ elif [[ $OS == *"Fedora"* ]]; then
 # CentOS
 elif [[ $OS == *"CentOS"* ]]; then
     #SIEM RPM
-    curl -o wazuh-agent-4.7.0-1.x86_64.rpm https://packages.wazuh.com/4.x/yum/wazuh-agent-4.7.0-1.x86_64.rpm && sudo WAZUH_MANAGER='siem.contego.com.br' WAZUH_AGENT_GROUP='Linux' rpm -ihv wazuh-agent-4.7.0-1.x86_64.rpm
+    curl -o wazuh-agent-4.7.0-1.x86_64.rpm https://packages.wazuh.com/4.x/yum/wazuh-agent-4.7.0-1.x86_64.rpm && sudo WAZUH_MANAGER=${SERVER} WAZUH_AGENT_GROUP='Linux' rpm -ihv wazuh-agent-4.7.0-1.x86_64.rpm
     sudo systemctl daemon-reload
     sudo systemctl enable wazuh-agent
     sudo systemctl start wazuh-agent
@@ -64,7 +69,7 @@ elif [[ $OS == *"CentOS"* ]]; then
 # RHEL 8
 elif [[ $OS == *"Red Hat"* ]]; then
     #SIEM RPM
-    curl -o wazuh-agent-4.7.0-1.x86_64.rpm https://packages.wazuh.com/4.x/yum/wazuh-agent-4.7.0-1.x86_64.rpm && sudo WAZUH_MANAGER='siem.contego.com.br' WAZUH_AGENT_GROUP='Linux' rpm -ihv wazuh-agent-4.7.0-1.x86_64.rpm
+    curl -o wazuh-agent-4.7.0-1.x86_64.rpm https://packages.wazuh.com/4.x/yum/wazuh-agent-4.7.0-1.x86_64.rpm && sudo WAZUH_MANAGER=${SERVER} WAZUH_AGENT_GROUP='Linux' rpm -ihv wazuh-agent-4.7.0-1.x86_64.rpm
     sudo systemctl daemon-reload
     sudo systemctl enable wazuh-agent
     sudo systemctl start wazuh-agent
@@ -76,7 +81,7 @@ elif [[ $OS == *"Red Hat"* ]]; then
 # RHEL 9
 elif [[ $OS == *"Red Hat"* ]]; then
     #SIEM RPM
-    curl -o wazuh-agent-4.7.0-1.x86_64.rpm https://packages.wazuh.com/4.x/yum/wazuh-agent-4.7.0-1.x86_64.rpm && sudo WAZUH_MANAGER='siem.contego.com.br' WAZUH_AGENT_GROUP='Linux' rpm -ihv wazuh-agent-4.7.0-1.x86_64.rpm
+    curl -o wazuh-agent-4.7.0-1.x86_64.rpm https://packages.wazuh.com/4.x/yum/wazuh-agent-4.7.0-1.x86_64.rpm && sudo WAZUH_MANAGER=${SERVER} WAZUH_AGENT_GROUP='Linux' rpm -ihv wazuh-agent-4.7.0-1.x86_64.rpm
     sudo systemctl daemon-reload
     sudo systemctl enable wazuh-agent
     sudo systemctl start wazuh-agent
@@ -88,7 +93,7 @@ elif [[ $OS == *"Red Hat"* ]]; then
 # openSUSE 15
 elif [[ $OS == *"openSUSE"* ]]; then
     #SIEM RPM
-    curl -o wazuh-agent-4.7.0-1.x86_64.rpm https://packages.wazuh.com/4.x/yum/wazuh-agent-4.7.0-1.x86_64.rpm && sudo WAZUH_MANAGER='siem.contego.com.br' WAZUH_AGENT_GROUP='Linux' rpm -ihv wazuh-agent-4.7.0-1.x86_64.rpm
+    curl -o wazuh-agent-4.7.0-1.x86_64.rpm https://packages.wazuh.com/4.x/yum/wazuh-agent-4.7.0-1.x86_64.rpm && sudo WAZUH_MANAGER=${SERVER} WAZUH_AGENT_GROUP='Linux' rpm -ihv wazuh-agent-4.7.0-1.x86_64.rpm
     sudo systemctl daemon-reload
     sudo systemctl enable wazuh-agent
     sudo systemctl start wazuh-agent
