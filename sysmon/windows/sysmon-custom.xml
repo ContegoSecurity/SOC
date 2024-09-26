@@ -11,7 +11,7 @@
 <!-- _ ___) || |____| |____ | |__| || | \ \  _| |_    | |      | |     -->  
 <!-- |_____/ |______|\_____| \____/ |_|  \_\|_____|   |_|      |_|     -->
 <!--                                                                   -->
-
+<!-- Based on the official repo https://github.com/SwiftOnSecurity/sysmon-config -->
 <Sysmon schemaversion="4.90">
   <HashAlgorithms>*</HashAlgorithms>
   <!-- This now also determines the file names of the files preserved (String) -->
